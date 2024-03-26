@@ -85,7 +85,7 @@ for feature_type in feature_types:
             wgs84_list = list(wgs84)
             features_data['features'][index]['geometry']['coordinates'] = wgs84_list
 
-        features_data['crs']['name'] = target_projection
+        features_data['crs']['properties']['name'] = target_projection
         output = json.dumps(features_data)
 
     else:
