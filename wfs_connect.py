@@ -83,7 +83,7 @@ for feature_type in feature_types:
             original = feature['geometry']['coordinates']
             wgs84 = transformer.transform(original[0], original[1])
             wgs84_list = list(wgs84)
-            features_data['features'][index]['geometry']['coordinates'] = wgs84_list
+            features_data['features'][index]['geometry']['coordinates'] = list(reversed(wgs84_list))
 
         features_data['crs']['properties']['name'] = target_projection
         output = json.dumps(features_data)
