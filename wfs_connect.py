@@ -79,6 +79,13 @@ for feature_type in feature_types:
 
         transformer = Transformer.from_crs(source_projection, target_projection)
 
+        # transform bounding box
+        if 'bbox' in features_data:
+            bbox_original = features_data['bbox']
+            bbox_wgs84_sw = transformer.transform(bbox_original[0], bbox_original[1])
+            bbox_wgs84_ne = transformer.transform(bbox_original[2], bbox_original[3])
+            features_data['bbox'] = list(reversed(bbox_wgs84_sw)) + list(reversed(bbox_wgs84_ne))
+
         # transform each features coordinates
         for index, feature in enumerate(features_data['features']):
             original = feature['geometry']['coordinates']
