@@ -68,6 +68,22 @@ INFO:__main__: Retrieved features:
 "","S6517","Reinickendorf","12","","13.32782743099606,52.56405334694123","","","","Reinickendorf","1201","Scharnweberstraße","12200309","13405","RBS","1960-01-01T00:00:00","Kurt-Schumacher-Platz","07048","Platz/Straße ohne HNR"
 ```
 
+In tabellarischer Darstellung zur besseren Lesbarkeit:
+
+adr_datum | adressid | bez_name | bez_nr | blk | coordinates | hko_id | hnr | hnr_zusatz | ort_name | ort_nr | plr_name | plr_nr | plz | qualitaet | str_datum | str_name | str_nr | typ
+---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----
+. | S26680 | Charlottenburg-Wilmersdorf | 04 |  | 13.281063091754831,52.48277042137358 |  |  |  | Grunewald | 0404 | Hagenplatz | 04400728 | 14193 | RBS | 2011-05-04T00:00:00 | Joseph-Joachim-Platz | 07025 | Platz/Straße ohne HNR
+. | S26813 | Mitte | 01 |  | 13.385002857291411,52.51819536166907 |  |  |  | Mitte | 0101 | Unter den Linden | 01100206 | 10117 | RBS | 2012-02-07T00:00:00 | Neustädtischer Kirchplatz | 10753 | Platz/Straße ohne HNR
+. | S6397 | Tempelhof-Schöneberg | 07 |  | 13.378243459875783,52.4660225914178 |  |  |  | Tempelhof | 0703 | Bosepark | 07400824 | 12103 | RBS | 1960-01-01T00:00:00 | Berlinickeplatz | 06927 | Platz/Straße ohne HNR
+. | S21009 | Lichtenberg | 11 |  | 13.492133789547339,52.53949277382288 |  |  |  | Alt-Hohenschönhausen | 1110 | Große-Leege-Straße | 11200513 | 13055 | RBS | 1960-01-01T00:00:00 | Strausberger Platz | 43245 | Platz/Straße ohne HNR
+. | S26439 | Pankow | 03 |  | 13.440674879147275,52.54702617496678 |  |  |  | Prenzlauer Berg | 0301 | Ostseestraße | 03601245 | 10409 | RBS | 1960-01-01T00:00:00 | Ostseeplatz | 42163 | Platz/Straße ohne HNR
+. | S22600 | Pankow | 03 |  | 13.437055365281893,52.532955692352644 |  |  |  | Prenzlauer Berg | 0301 | Bötzowstraße | 03701660 | 10407 | RBS | 1993-02-04T00:00:00 | Arnswalder Platz | 44889 | Platz/Straße ohne HNR
+. | S19610 | Lichtenberg | 11 |  | 13.47984679713975,52.52053737036246 |  |  |  | Lichtenberg | 1103 | Rathaus Lichtenberg | 11300722 | 10367 | RBS | 1960-01-01T00:00:00 | Loeperplatz | 41814 | Platz/Straße ohne HNR
+. | S26417 | Tempelhof-Schöneberg | 07 |  | 13.397163710478978,52.39671063368912 |  |  |  | Lichtenrade | 0706 | Kettinger Straße | 07601442 | 12305 | RBS | 1960-01-01T00:00:00 | Ekensunder Platz | 06961 | Platz/Straße ohne HNR
+. | S20312 | Friedrichshain-Kreuzberg | 02 |  | 13.4567946405513,52.5023798358904 |  |  |  | Friedrichshain | 0201 | Stralauer Kiez | 02500835 | 10245 | RBS | 1960-01-01T00:00:00 | Rudolfplatz | 42486 | Platz/Straße ohne HNR
+. | S6517 | Reinickendorf | 12 |  | 13.32782743099606,52.56405334694123 |  |  |  | Reinickendorf | 1201 | Scharnweberstraße | 12200309 | 13405 | RBS | 1960-01-01T00:00:00 | Kurt-Schumacher-Platz | 07048 | Platz/Straße ohne HNR
+
+
 ## License
 
 All code in this repository is published under the [MIT License](License).
