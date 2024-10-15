@@ -44,6 +44,10 @@ To list the avaible types without querying any features, you can do this:
 ```
 (venv) $ python wfs_connect.py --url https://gdi.berlin.de/services/wfs/schulen --types_only
 INFO:__main__: Available feature types: schulen:schulen_esb, schulen:schulen
+[
+  "schulen:schulen_esb",
+  "schulen:schulen"
+]
 ```
 
 ## Querying Specific Feature Types
