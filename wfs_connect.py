@@ -1,8 +1,10 @@
 import argparse
 import json
 import logging
-from pyproj import Transformer
+import sys
+
 from owslib.wfs import WebFeatureService
+from pyproj import Transformer
 
 logging.basicConfig(level=logging.INFO)
 LOG = logging.getLogger(__name__)
@@ -11,9 +13,10 @@ default_wfs_url = "https://fbinter.stadt-berlin.de/fb/wfs/data/senstadt/s_luftbi
 default_source_projection = 'EPSG:25833' # 25833 is the projection used in Berlin's Open Data ("Soldner")
 default_target_projection = 'EPSG:4326' # 4326 is WGS84
 
-default_output_format = "application/geo+json"
+default_output_format = "application/json"
 default_start = 0
 default_maxfeatures = 10
+default_features_types = 'all'
 
 parser = argparse.ArgumentParser(
     description="Connect to a WFS, list the features (layers) and get some data from them.")
@@ -29,10 +32,10 @@ parser.add_argument('--target',
                     help=f"Target projection of the data. Default: {default_target_projection}. Use 'none' for no projection conversion.",
                     default=default_target_projection,
                     )
-# parser.add_argument('--format',
-#                     help=f"Desired output format. Default: {default_output_format}",
-#                     default=default_output_format,
-#                     )
+parser.add_argument('--format',
+                    help=f"Desired output format. Default: {default_output_format}",
+                    default=default_output_format,
+                    )
 parser.add_argument('--start',
                     help=f"Start index. Default: {default_start}",
                     type=int,
@@ -43,11 +46,21 @@ parser.add_argument('--max',
                     type=int,
                     default=default_maxfeatures,
                     )
+parser.add_argument('--types',
+                    help=f"Names of feature types to be queried (separated by comma), or 'all'. Default: {default_features_types}",
+                    type=str,
+                    default=default_features_types,
+                    )
+parser.add_argument("--types_only",
+                    action="store_true", 
+					help="Boolean. Only list the available types, don't query any features. Off by default."
+                    )
+
 args = parser.parse_args()
 
 wfs_url = args.url
 maxfeatures = args.max
-outputformat = default_output_format
+outputformat = args.format
 startindex = args.start
 source_projection = args.source
 target_projection = args.target
@@ -56,10 +69,25 @@ target_projection = args.target
 wfs = WebFeatureService(wfs_url, version="2.0.0")
 
 # Get information about available feature types (layers)
-feature_types = list(wfs.contents)
+feature_types_available = list(wfs.contents)
 
 # Print the available feature types
-LOG.info(" Available feature types:")
+LOG.info(f" Available feature types: {', '.join(feature_types_available)}")
+
+if args.types_only:
+    print(json.dumps(feature_types_available))
+    sys.exit(0)
+
+# print requested feature types
+feature_types_requested = args.types.split(',')
+feature_types_requested = [ feature_type.strip() for feature_type in feature_types_requested ]
+LOG.info(f" Requested feature types: {', '.join(feature_types_requested)}")
+
+if args.types == 'all':
+    feature_types = feature_types_available
+else:
+    feature_types = feature_types_requested
+
 for feature_type in feature_types:
     LOG.info(f" {feature_type}")
 

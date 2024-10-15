@@ -20,7 +20,7 @@ $ . venv/bin/activate
 
 ```
 (venv) $ python wfs_connect.py --help 
-usage: wfs_connect.py [-h] [--url URL] [--source SOURCE] [--target TARGET] [--start START] [--max MAX]
+usage: wfs_connect.py [-h] [--url URL] [--source SOURCE] [--target TARGET] [--format FORMAT] [--start START] [--max MAX] [--types TYPES] [--types_only]
 
 Connect to a WFS, list the features (layers) and get some data from them.
 
@@ -29,8 +29,30 @@ options:
   --url URL        URL of the WFS. Default: https://fbinter.stadt-berlin.de/fb/wfs/data/senstadt/s_luftbild1979
   --source SOURCE  Source projection of the data. Default: EPSG:25833
   --target TARGET  Target projection of the data. Default: EPSG:4326. Use 'none' for no projection conversion.
+  --format FORMAT  Desired output format. Default: application/json
   --start START    Start index. Default: 0
   --max MAX        Maximum number of features to be returned. Default: 10
+  --types TYPES    Names of feature types to be queried (separated by comma), or 'all'. Default: all
+  --types_only     Boolean. Only list the available types, don't query any features. Off by default.
+```
+
+## Listing the Available Feature Types/Layers
+
+A WFS can contain several layers or feature types.
+To list the avaible types without querying any features, you can do this:
+
+```
+(venv) $ python wfs_connect.py --url https://gdi.berlin.de/services/wfs/schulen --types_only
+INFO:__main__: Available feature types: schulen:schulen_esb, schulen:schulen
+```
+
+## Querying Specific Feature Types
+
+By default, all feature types will be queried.
+However, it is possible to query only specific types by using the `--types` parameter:
+
+```
+(venv) $ python wfs_connect.py --url https://gdi.berlin.de/services/wfs/schulen --format=json --types=schulen:schulen 
 ```
 
 ## Projection Conversion
@@ -48,7 +70,7 @@ For example, jq can be used to convert the output to CSV – some WFSes offer CS
 Converting to CSV with jq can look like this:
 
 ```
-(venv) $ python wfs_connect.py --url https://fbinter.stadt-berlin.de/fb/wfs/data/senstadt/s_wfs_adressenberlin | \
+(venv) $ python wfs_connect.py --url https://gdi.berlin.de/services/wfs/adressen_berlin | \
 jq '[.features[] | .properties + { coordinates: .geometry.coordinates | join(",")}]' | \
 jq -r '(map(keys) | add | unique) as $cols | map(. as $row | $cols | map($row[.])) as $rows | $cols, $rows[] | @csv'
 INFO:__main__: Available feature types:
