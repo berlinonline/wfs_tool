@@ -94,7 +94,7 @@ INFO:__main__: Retrieved features:
 "","S6517","Reinickendorf","12","","13.32782743099606,52.56405334694123","","","","Reinickendorf","1201","Scharnweberstraße","12200309","13405","RBS","1960-01-01T00:00:00","Kurt-Schumacher-Platz","07048","Platz/Straße ohne HNR"
 ```
 
-In tabellarischer Darstellung zur besseren Lesbarkeit:
+As a table, for improved readability:
 
 adr_datum | adressid | bez_name | bez_nr | blk | coordinates | hko_id | hnr | hnr_zusatz | ort_name | ort_nr | plr_name | plr_nr | plz | qualitaet | str_datum | str_name | str_nr | typ
 ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----
